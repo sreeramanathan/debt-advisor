@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
+import java.util.Date;
+
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.nullValue;
