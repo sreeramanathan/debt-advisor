@@ -1,9 +1,9 @@
-package tour_planner.controllers;
+package debt_advisor.controllers;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static tour_planner.utils.StringTemplate.template;
+import static debt_advisor.utils.StringTemplate.template;
 
 public class UserController {
     public void index(HttpServletResponse resp) throws IOException {

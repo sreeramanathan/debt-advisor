@@ -5,7 +5,7 @@
 <urlrewrite>
     <rule>
         <from>^/user$</from>
-        <run class="tour_planner.controllers.UserController" method="index"/>
+        <run class="debt_advisor.controllers.UserController" method="index"/>
     </rule>
 </urlrewrite>
 

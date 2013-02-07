@@ -1,4 +1,4 @@
-package tour_planner.utils;
+package debt_advisor.utils;
 
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;

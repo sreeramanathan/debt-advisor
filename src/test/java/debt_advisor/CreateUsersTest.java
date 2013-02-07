@@ -1,4 +1,4 @@
-package tour_planner;
+package debt_advisor;
 
 import com.thoughtworks.inproctester.jetty.HttpAppTester;
 import com.thoughtworks.inproctester.webdriver.InProcessHtmlUnitDriver;
@@ -6,8 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-
-import java.util.Date;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
