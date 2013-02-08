@@ -5,36 +5,14 @@
     <body>
         <div id="heading">Users</div>
         <ul id='users'>
-            <li class="user">
-                <input class="forename" value="Ramanathan">
-                <input class="surname" value="Balakrishnan">
+            $users:{user|
+            <li class="user $if(user.empty)$empty$endif$">
+                <input class="forename" value="$user.forename$">
+                <input class="surname" value="$user.surname$">
 
                 <div class="action"></div>
             </li>
-            <li class="user empty">
-                <input class="forename" value="Forename">
-                <input class="surname" value="Surname">
-
-                <div class="action"></div>
-            </li>
-            <li class="user empty">
-                <input class="forename" value="Forename">
-                <input class="surname" value="Surname">
-
-                <div class="action"></div>
-            </li>
-            <li class="user empty">
-                <input class="forename" value="Forename">
-                <input class="surname" value="Surname">
-
-                <div class="action"></div>
-            </li>
-            <li class="user empty">
-                <input class="forename" value="Forename">
-                <input class="surname" value="Surname">
-
-                <div class="action"></div>
-            </li>
+            }$
         </ul>
         <div class="add-user"><input type="button" value="Add more"></div>
     </body>
