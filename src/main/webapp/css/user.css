@@ -20,11 +20,15 @@
     height: 16px;
     cursor: pointer;
     display: inline-block;
-    background-image: url("../images/delete.png");
+    background-image: url("../images/add.png");
 }
 
 .user.empty .action {
-    background-image: url("../images/add.png");
+    background-image: none;
+}
+
+.user.submitted .action {
+    background-image: url("../images/delete.png");
 }
 
 .add-user {
