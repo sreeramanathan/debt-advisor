@@ -4,8 +4,14 @@
 
 <urlrewrite>
     <rule>
+        <condition type="method">GET</condition>
         <from>^/user$</from>
         <run class="debt_advisor.controllers.UserController" method="index"/>
+        <to>null</to>
+    </rule>
+    <rule>
+        <from>/</from>
+        <set type="status">404</set>
     </rule>
 </urlrewrite>
 
