@@ -1,6 +1,14 @@
 <html>
     <head>
         <link rel="stylesheet" href="css/user.css" type="text/css">
+        <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="js/user.js"></script>
+        <script type="text/javascript">
+            jQuery(function() {
+                var user = new User();
+                user.load();
+            });
+        </script>
     </head>
     <body>
         <div id="heading">Users</div>

@@ -12,8 +12,8 @@ public class User {
     }
 
     public User() {
-        this.forename = "forename";
-        this.surname = "surname";
+        this.forename = "Forename";
+        this.surname = "Surname";
         this.empty = true;
     }
 
