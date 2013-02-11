@@ -7,14 +7,14 @@ import org.stringtemplate.v4.STRawGroupDir;
 public class StringTemplate {
     public static STGroup stGroup;
 
-    public static ST template(String name) {
+    public static void init() {
         if (stGroup == null) {
-            stGroup = stGroup();
+            stGroup = new STRawGroupDir("templates", '$', '$');
         }
+    }
+
+    public static ST template(String name) {
         return stGroup.getInstanceOf(name);
     }
 
-    private static STGroup stGroup() {
-        return new STRawGroupDir("templates", '$', '$');
-    }
 }

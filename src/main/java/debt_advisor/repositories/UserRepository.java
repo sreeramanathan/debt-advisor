@@ -9,7 +9,7 @@ import org.neo4j.graphdb.Relationship;
 import java.util.ArrayList;
 import java.util.List;
 
-import static debt_advisor.models.User.RelTypes.USER;
+import static debt_advisor.neo4j.RelationshipType.USER;
 import static org.neo4j.graphdb.Direction.OUTGOING;
 
 public class UserRepository {

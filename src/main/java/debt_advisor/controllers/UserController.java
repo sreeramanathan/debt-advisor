@@ -10,10 +10,11 @@ import java.io.IOException;
 
 import static debt_advisor.utils.StringTemplate.template;
 
-public class UserController {
+public class UserController extends BaseController {
     private UserRepository userRepository;
 
-    public void init(ServletConfig servletConfig) {
+    @Override
+    protected void init() {
         userRepository = new UserRepository();
     }
 

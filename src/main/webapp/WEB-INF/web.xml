@@ -6,12 +6,12 @@
          version="2.5">
 
     <servlet>
-        <servlet-name>UrlRewriteServlet</servlet-name>
-        <servlet-class>org.tuckey.web.filters.urlrewrite.UrlRewriteServlet</servlet-class>
+        <servlet-name>debtAdvisorServlet</servlet-name>
+        <servlet-class>debt_advisor.servlet.DebtAdvisorServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>UrlRewriteServlet</servlet-name>
+        <servlet-name>debtAdvisorServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 

@@ -2,26 +2,19 @@ package debt_advisor;
 
 import com.thoughtworks.inproctester.jetty.HttpAppTester;
 import com.thoughtworks.inproctester.webdriver.InProcessHtmlUnitDriver;
-import debt_advisor.models.User;
 import debt_advisor.utils.GraphDatabase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.neo4j.cypher.internal.symbols.RelationshipType;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Relationship;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.graphdb.event.TransactionData;
 import org.neo4j.graphdb.event.TransactionEventHandler;
-import org.neo4j.graphdb.factory.GraphDatabaseFactory;
-import org.neo4j.graphdb.index.Index;
-import org.neo4j.tooling.GlobalGraphOperations;
 import org.openqa.selenium.By;
 
-import java.util.List;
-
-import static debt_advisor.models.User.RelTypes.USER;
+import static debt_advisor.neo4j.RelationshipType.USER;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.nullValue;
@@ -39,6 +32,7 @@ public class CreateUsersTest {
         connection = new HttpAppTester("src/main/webapp", "/");
         connection.start();
         driver = new InProcessHtmlUnitDriver(connection);
+        GraphDatabase.init();
         graphDb = GraphDatabase.instance();
         registerDatabaseChangeTracker();
         setupUsers();
@@ -62,13 +56,11 @@ public class CreateUsersTest {
 
     private void setupUsers() {
         Transaction transaction = graphDb.beginTx();
-        Node userReference = graphDb.createNode();
         Node user = graphDb.createNode();
         user.setProperty("forename", "Ramanathan");
         user.setProperty("surname", "Balakrishnan");
+        Node userReference = graphDb.index().forNodes("references").get("reference", "user").getSingle();
         userReference.createRelationshipTo(user, USER);
-        Index<Node> referencesIndex = graphDb.index().forNodes("references");
-        referencesIndex.add(userReference, "reference", "user");
         transaction.success();
         transaction.finish();
     }
