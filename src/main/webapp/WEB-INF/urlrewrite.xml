@@ -10,6 +10,18 @@
         <to>null</to>
     </rule>
     <rule>
+        <condition type="method">POST</condition>
+        <from>^/user$</from>
+        <run class="debt_advisor.controllers.UserController" method="create"/>
+        <to>null</to>
+    </rule>
+    <rule>
+        <condition type="method">DELETE</condition>
+        <from>^/user$</from>
+        <run class="debt_advisor.controllers.UserController" method="delete"/>
+        <to>null</to>
+    </rule>
+    <rule>
         <from>/</from>
         <set type="status">404</set>
     </rule>

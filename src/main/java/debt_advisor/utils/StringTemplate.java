@@ -8,9 +8,9 @@ public class StringTemplate {
     public static STGroup stGroup;
 
     public static ST template(String name) {
-//        if (stGroup == null) {
+        if (stGroup == null) {
             stGroup = stGroup();
-//        }
+        }
         return stGroup.getInstanceOf(name);
     }
 
