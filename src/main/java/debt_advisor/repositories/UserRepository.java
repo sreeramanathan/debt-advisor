@@ -23,4 +23,10 @@ public class UserRepository {
         }
         return users;
     }
+
+    public void create(User user) {
+    }
+
+    public void delete(User user) {
+    }
 }

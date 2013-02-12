@@ -45,8 +45,10 @@ var User = function() {
     };
 
     var ajaxForUser = function(type, successHandler, user) {
+        var forename = user.find('.forename').val();
+        var surname = user.find('.surname').val();
         $.ajax({
-            url: "user",
+            url: "user/" + forename + " " + surname,
             type: type,
             success: function() {
                 successHandler(user);
