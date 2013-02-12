@@ -21,11 +21,11 @@ public class DebtAdvisorServlet extends UrlRewriteServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GraphDatabaseService graphDb = GraphDatabase.instance();
         Transaction transaction = graphDb.beginTx();
         try {
-            super.doGet(req, resp);
+            super.service(req, resp);
         } finally {
             transaction.success();
             transaction.finish();

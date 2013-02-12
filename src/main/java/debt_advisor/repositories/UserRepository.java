@@ -25,6 +25,12 @@ public class UserRepository {
     }
 
     public void create(User user) {
+        GraphDatabaseService graphDb = GraphDatabase.instance();
+        Node userNode = graphDb.createNode();
+        userNode.setProperty("forename", user.getForename());
+        userNode.setProperty("surname", user.getSurname());
+        Node userReference = graphDb.index().forNodes("references").get("reference", "user").getSingle();
+        userReference.createRelationshipTo(userNode, USER);
     }
 
     public void delete(User user) {
