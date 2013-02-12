@@ -13,12 +13,16 @@ import org.neo4j.graphdb.Transaction;
 import org.neo4j.graphdb.event.TransactionData;
 import org.neo4j.graphdb.event.TransactionEventHandler;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 import static debt_advisor.neo4j.RelationshipType.USER;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class CreateUsersTest {
     HttpAppTester connection;
@@ -50,8 +54,16 @@ public class CreateUsersTest {
         driver.get("http://localhost/user");
 
         assertThat(driver.findElement(By.id("users")), is(not(nullValue())));
-        assertThat(driver.findElement(By.className("forename")).getAttribute("value"), is("Ramanathan"));
-        assertThat(driver.findElement(By.className("surname")).getAttribute("value"), is("Balakrishnan"));
+        List<WebElement> users = driver.findElements(By.className("user"));
+        assertThat(users.size(), is(5));
+        assertTrue(users.get(0).getAttribute("class").contains("submitted"));
+        assertThat(users.get(0).findElement(By.className("forename")).getAttribute("value"), is("Ramanathan"));
+        assertThat(users.get(0).findElement(By.className("surname")).getAttribute("value"), is("Balakrishnan"));
+        for (int count = 1; count < 5; count++) {
+            assertTrue(users.get(count).getAttribute("class").contains("empty"));
+            assertThat(users.get(count).findElement(By.className("forename")).getAttribute("value"), is("Forename"));
+            assertThat(users.get(count).findElement(By.className("surname")).getAttribute("value"), is("Surname"));
+        }
     }
 
     private void setupUsers() {
