@@ -1,6 +1,5 @@
 package debt_advisor;
 
-import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.thoughtworks.inproctester.jetty.HttpAppTester;
@@ -9,19 +8,11 @@ import debt_advisor.utils.GraphDatabase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.Node;
-import org.neo4j.graphdb.Relationship;
-import org.neo4j.graphdb.Transaction;
-import org.neo4j.graphdb.event.TransactionData;
-import org.neo4j.graphdb.event.TransactionEventHandler;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-import static debt_advisor.neo4j.RelationshipType.USER;
-import static java.lang.Thread.sleep;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.nullValue;
@@ -60,9 +51,7 @@ public class CreateUsersTest {
         List<WebElement> users = driver.findElements(By.className("user"));
         assertThat(users.size(), is(5));
         for (int count = 0; count < 5; count++) {
-            assertTrue(users.get(count).getAttribute("class").contains("empty"));
-            assertThat(users.get(count).findElement(By.className("forename")).getAttribute("value"), is("Forename"));
-            assertThat(users.get(count).findElement(By.className("surname")).getAttribute("value"), is("Surname"));
+            assertEmpty(users.get(count));
         }
 
         WebElement firstUser = users.get(0);
@@ -77,9 +66,7 @@ public class CreateUsersTest {
         assertThat(firstUser.findElement(By.className("forename")).getAttribute("value"), is("Ramanathan"));
         assertThat(firstUser.findElement(By.className("surname")).getAttribute("value"), is("Balakrishnan"));
         for (int count = 1; count < 5; count++) {
-            assertTrue(users.get(count).getAttribute("class").contains("empty"));
-            assertThat(users.get(count).findElement(By.className("forename")).getAttribute("value"), is("Forename"));
-            assertThat(users.get(count).findElement(By.className("surname")).getAttribute("value"), is("Surname"));
+            assertEmpty(users.get(count));
         }
 
         firstUser.findElement(By.className("action")).click();
@@ -87,9 +74,13 @@ public class CreateUsersTest {
         users = driver.findElements(By.className("user"));
         assertThat(users.size(), is(5));
         for (int count = 0; count < 5; count++) {
-            assertTrue(users.get(count).getAttribute("class").contains("empty"));
-            assertThat(users.get(count).findElement(By.className("forename")).getAttribute("value"), is("Forename"));
-            assertThat(users.get(count).findElement(By.className("surname")).getAttribute("value"), is("Surname"));
+            assertEmpty(users.get(count));
         }
+    }
+
+    private void assertEmpty(WebElement user) {
+        assertTrue(user.getAttribute("class").contains("empty"));
+        assertThat(user.findElement(By.className("forename")).getAttribute("value"), is("Forename"));
+        assertThat(user.findElement(By.className("surname")).getAttribute("value"), is("Surname"));
     }
 }
