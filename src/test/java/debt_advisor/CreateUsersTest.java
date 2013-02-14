@@ -1,12 +1,5 @@
 package debt_advisor;
 
-import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.thoughtworks.inproctester.jetty.HttpAppTester;
-import com.thoughtworks.inproctester.webdriver.InProcessHtmlUnitDriver;
-import debt_advisor.utils.GraphDatabase;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -19,31 +12,7 @@ import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-public class CreateUsersTest {
-    HttpAppTester connection;
-    InProcessHtmlUnitDriver driver;
-
-    @Before
-    public void setUp() throws Exception {
-        connection = new HttpAppTester("src/main/webapp", "/");
-        connection.start();
-        driver = new InProcessHtmlUnitDriver(connection) {
-            @Override
-            protected WebClient modifyWebClient(WebClient client) {
-                client.setAjaxController(new NicelyResynchronizingAjaxController());
-                return client;
-            }
-        };
-        driver.setJavascriptEnabled(true);
-        GraphDatabase.init();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        driver.close();
-        connection.stop();
-    }
-
+public class CreateUsersTest extends InProcessFunctionalTest {
     @Test
     public void shouldRenderCreateUsersPage() throws Exception {
         driver.get("http://localhost/user");

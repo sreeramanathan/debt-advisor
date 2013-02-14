@@ -2,7 +2,6 @@ package debt_advisor.repositories;
 
 import debt_advisor.models.User;
 import debt_advisor.utils.GraphDatabase;
-import org.neo4j.graphdb.Direction;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Relationship;
