@@ -15,8 +15,8 @@
         <ul id='users'>
             $users:{user|
             <li class="user $if(user.empty)$empty$else$submitted$endif$">
-                <input name="forename" class="forename" value="$user.forename$">
-                <input name="surname" class="surname" value="$user.surname$">
+                <input class="forename" value="$user.forename$">
+                <input class="surname" value="$user.surname$">
 
                 <div class="action"></div>
             </li>

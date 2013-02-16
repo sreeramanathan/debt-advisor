@@ -26,6 +26,12 @@
         <to>null</to>
     </rule>
     <rule>
+        <condition type="method">GET</condition>
+        <from>^/expense$</from>
+        <run class="debt_advisor.controllers.ExpenseController" method="index"/>
+        <to>null</to>
+    </rule>
+    <rule>
         <from>/</from>
         <set type="status">404</set>
     </rule>

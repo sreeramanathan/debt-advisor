@@ -12,11 +12,10 @@ import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-public class CreateUsersTest extends InProcessFunctionalTest {
+public class UsersTest extends InProcessFunctionalTest {
     @Test
-    public void shouldRenderCreateUsersPage() throws Exception {
+    public void shouldViewAddAndDeleteUsers() throws Exception {
         driver.get("http://localhost/user");
-        assertThat(driver.findElement(By.id("users")), is(not(nullValue())));
         List<WebElement> users = driver.findElements(By.className("user"));
         assertThat(users.size(), is(5));
         for (int count = 0; count < 5; count++) {

@@ -1,0 +1,49 @@
+#heading {
+    text-align: center;
+}
+
+#expenses {
+    padding: 0;
+    list-style: none;
+}
+
+.expense {
+    margin-top: 0;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.expense input, .expense select {
+    padding: 5px;
+    margin-left: 0;
+    margin-right: 5px;
+    vertical-align: top;
+}
+
+.owner, .participant {
+    width: 300px;
+}
+
+.expense.empty .description, .expense.empty .amount {
+    color: #999;
+}
+
+.add-expense {
+    text-align: center;
+}
+
+.action {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    display: inline-block;
+    background-image: url("images/add.png");
+}
+
+.expense.empty .action {
+    background-image: none;
+}
+
+.expense.submitted .action {
+    background-image: url("images/delete.png");
+}

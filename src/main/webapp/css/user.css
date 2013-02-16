@@ -15,12 +15,16 @@
     color: #d3d3d3;
 }
 
+.add-user {
+    text-align: center;
+}
+
 .action {
     width: 16px;
     height: 16px;
     cursor: pointer;
     display: inline-block;
-    background-image: url("../images/add.png");
+    background-image: url("images/add.png");
 }
 
 .user.empty .action {
@@ -28,9 +32,5 @@
 }
 
 .user.submitted .action {
-    background-image: url("../images/delete.png");
-}
-
-.add-user {
-    text-align: center;
+    background-image: url("images/delete.png");
 }

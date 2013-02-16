@@ -31,8 +31,8 @@ var User = function() {
             </li>\
             ");
         $(".forename,.surname").unbind();
-        $(".forename,.surname").focus(textboxFocus);
-        $(".forename,.surname").blur(textboxBlur);
+        $(".action").unbind();
+        wireUpUserHandlers();
     };
 
     var createSuccess = function(user) {
@@ -66,11 +66,15 @@ var User = function() {
         }
     };
 
-    self.load = function() {
+    var wireUpUserHandlers = function() {
         $(".forename,.surname").focus(textboxFocus);
         $(".forename,.surname").blur(textboxBlur);
-        $(".add-user").click(addUser);
         $(".action").click(action);
+    }
+
+    self.load = function() {
+        wireUpUserHandlers();
+        $(".add-user").click(addUser);
     };
 
     return self;
