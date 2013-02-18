@@ -32,6 +32,20 @@
         <to>null</to>
     </rule>
     <rule>
+        <condition type="method">POST</condition>
+        <from>^/expense/(.*)$</from>
+        <set name="description">$1</set>
+        <run class="debt_advisor.controllers.ExpenseController" method="create"/>
+        <to>null</to>
+    </rule>
+    <rule>
+        <condition type="method">DELETE</condition>
+        <from>^/expense/(.*)$</from>
+        <set name="description">$1</set>
+        <run class="debt_advisor.controllers.ExpenseController" method="delete"/>
+        <to>null</to>
+    </rule>
+    <rule>
         <from>/</from>
         <set type="status">404</set>
     </rule>

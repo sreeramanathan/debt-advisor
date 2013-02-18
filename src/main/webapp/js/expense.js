@@ -36,12 +36,27 @@ var Expense = function() {
         });
     };
 
+    var ajaxExpense = function(type, successHandler, expense) {
+        var amount = expense.find('.amount').val();
+        var description = expense.find('.description').val();
+        var owner = expense.find('.owner').val();
+        var participants = expense.find('.participant').val();
+        $.ajax({
+            url: "expense/" + description,
+            data: {amount: amount, owner: owner, participants: participants},
+            type: type,
+            success: function() {
+                successHandler(expense);
+            }
+        });
+
+    };
+
     self.load = function() {
         $(".expense").each(function() {
             insertOwnerAndParticipantOptions($(this));
         })
-        new TabularForm().wireUpHandlers(function() {
-        }, addExpense);
+        new TabularForm().wireUpHandlers(ajaxExpense, addExpense);
     };
 
     return self;

@@ -5,6 +5,7 @@ import debt_advisor.repositories.ExpenseRepository;
 import debt_advisor.repositories.UserRepository;
 import org.stringtemplate.v4.ST;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +30,14 @@ public class ExpenseController extends BaseController {
         template.add("users", userRepository.fetchAll());
         template.add("expenses", backfillEmptyExpenses(expenses));
         response.getWriter().write(template.render());
+    }
+
+    public void create(HttpServletRequest request) {
+        System.out.println("create");
+    }
+
+    public void delete(HttpServletRequest request) {
+        System.out.println("delete");
     }
 
     private List<Expense> backfillEmptyExpenses(List<Expense> expenses) {
