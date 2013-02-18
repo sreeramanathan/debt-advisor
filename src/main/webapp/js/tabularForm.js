@@ -33,19 +33,38 @@ var TabularForm = function() {
         }
     };
 
-    var wireUpRowHandlers = function(action) {
+    var createSuccess = function(row) {
+        row.addClass("submitted");
+    };
+
+    var deleteSuccess = function(row) {
+        row.remove();
+    };
+
+    var action = function(elem, ajax) {
+        var parent = elem.parent();
+        if (parent.hasClass("submitted")) {
+            ajax("DELETE", deleteSuccess, parent);
+        } else if (!parent.hasClass("empty")) {
+            ajax("POST", createSuccess, parent);
+        }
+    };
+
+    var wireUpRowHandlers = function(ajax) {
         $(".textbox").unbind();
         $(".action").unbind();
         $(".textbox").focus(textboxFocus);
         $(".textbox").blur(textboxBlur);
-        $(".action").click(action);
+        $(".action").click(function() {
+            action($(this), ajax);
+        });
     };
 
-    self.wireUpHandlers = function(action, addRow) {
-        wireUpRowHandlers(action);
+    self.wireUpHandlers = function(ajax, addRow) {
+        wireUpRowHandlers(ajax);
         $(".add-row").click(addRow);
         $(".add-row").click(function() {
-            wireUpRowHandlers(action)
+            wireUpRowHandlers(ajax)
         });
     };
 
