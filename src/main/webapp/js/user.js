@@ -1,38 +1,14 @@
 var User = function() {
     var self = {};
 
-    var emptyTheUser = function(user) {
-        user.addClass("empty");
-        user.find(".forename").val("Forename");
-        user.find(".surname").val("Surname");
-    }
-
-    var textboxFocus = function() {
-        var user = $(this).parent(".user");
-        if (user.hasClass("empty")) {
-            user.find(".forename,.surname").val("");
-            user.removeClass("empty");
-        }
-    };
-
-    var textboxBlur = function() {
-        var user = $(this).parent(".user");
-        if (user.find(".forename").val() === "" && user.find(".surname").val() === "") {
-            emptyTheUser(user);
-        }
-    };
-
     var addUser = function() {
-        $("#users").append("\
-            <li class='user empty'>\
-                <input class='forename' value='Forename'>\
-                <input class='surname' value='Surname'>\
+        $(".tabular-form").append("\
+            <li class='row user empty'>\
+                <input class='forename textbox' value='Forename'>\
+                <input class='surname textbox' value='Surname'>\
                 <div class='action'></div>\
             </li>\
             ");
-        $(".forename,.surname").unbind();
-        $(".action").unbind();
-        wireUpUserHandlers();
     };
 
     var createSuccess = function(user) {
@@ -40,8 +16,7 @@ var User = function() {
     };
 
     var deleteSuccess = function(user) {
-        user.removeClass("submitted");
-        emptyTheUser(user);
+        user.remove();
     };
 
     var ajaxForUser = function(type, successHandler, user) {
@@ -61,20 +36,13 @@ var User = function() {
         var parent = element.parent();
         if (parent.hasClass("submitted")) {
             ajaxForUser("DELETE", deleteSuccess, parent);
-        } else if (!element.hasClass("empty")) {
+        } else if (!parent.hasClass("empty")) {
             ajaxForUser("POST", createSuccess, parent);
         }
     };
 
-    var wireUpUserHandlers = function() {
-        $(".forename,.surname").focus(textboxFocus);
-        $(".forename,.surname").blur(textboxBlur);
-        $(".action").click(action);
-    }
-
     self.load = function() {
-        wireUpUserHandlers();
-        $(".add-user").click(addUser);
+        new TabularForm().wireUpHandlers(action, addUser);
     };
 
     return self;

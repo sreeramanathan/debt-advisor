@@ -1,0 +1,51 @@
+.heading {
+    text-align: center;
+}
+
+.tabular-form {
+    padding: 0;
+    list-style: none;
+}
+
+.row {
+    margin-top: 0;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.row input, .row select {
+    padding: 5px;
+    margin-left: 0;
+    margin-right: 5px;
+    vertical-align: top;
+}
+
+.row.empty input {
+    color: #999;
+}
+
+.action {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    display: inline-block;
+    background-image: url("images/add.png");
+}
+
+.row.empty .action {
+    background-image: none;
+}
+
+.row.submitted .action {
+    background-image: url("images/delete.png");
+}
+
+.add-row {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.add-row input {
+    width: 90px;
+    height: 30px;
+}
